@@ -12,53 +12,53 @@
 
   <label>System Size (kWp): <span id="sizeVal">5.00</span> kWp</label>
   <input type="range" id="size" min="1" max="15" step="0.01" value="5.00" />
+  <p class="comment">Your planned solar array’s total peak output capacity.</p>
 
   <label>System Cost (€): <span id="costVal">12000</span> €</label>
   <input type="range" id="cost" min="5000" max="30000" step="100" value="12000" />
+  <p class="comment">Full installed cost, including battery if you have one.</p>
 
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
   <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
-  <p class="comment">Typical domestic unit rate (Electric Ireland, June 2025).</p>
+  <p class="comment">What you pay for grid electricity. Typical: ~34–40 c/kWh.</p>
 
   <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.18</span></label>
   <input type="range" id="fit" min="0.00" max="0.30" step="0.001" value="0.18" />
+  <p class="comment">What your supplier pays for surplus exported units.</p>
 
   <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
   <input type="range" id="self" min="0" max="100" step="1" value="40" />
-
-  <label>Override Self-Consumption (%): <span id="overrideVal">0</span>%</label>
-  <input type="range" id="override" min="0" max="100" step="1" value="0" />
-  <p class="comment">Use this if you want to force a different self-consumption estimate.</p>
+  <p class="comment">How much of your solar you use directly. More battery = higher %.</p>
 
   <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
   <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
-  <p class="comment">Installers often bake this in — don’t assume it’s free money.</p>
+  <p class="comment">SEAI grant — note: many installers factor this into their price.</p>
 
   <label>VAT Rate (%): <span id="vatVal">0</span>%</label>
   <input type="range" id="vat" min="0" max="23" step="0.1" value="0" />
-  <p class="comment">Domestic PV is normally zero-rated. Use 13.5% for small commercial or 23% if advised by installer.</p>
+  <p class="comment">Most domestic installs are zero-rated. Use 13.5% for small commercial.</p>
 
   <label>Annual Degradation (%): <span id="degVal">0.7</span>%</label>
   <input type="range" id="deg" min="0" max="2" step="0.1" value="0.7" />
-  <p class="comment">Panels lose ~0.5–0.8% output per year on average.</p>
+  <p class="comment">Annual output loss — standard panels lose ~0.5–0.8%/yr.</p>
 
   <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
   <input type="range" id="usage" min="1000" max="20000" step="10" value="4000" />
-  <p class="comment">Your annual household electricity use.</p>
+  <p class="comment">Your total household electricity use per year.</p>
 
   <label>Orientation (°): <span id="orientVal">180</span>°</label>
   <input type="range" id="orient" min="0" max="360" step="1" value="180" />
-  <p class="comment">0° = North, 90° = East, 180° = South, 270° = West. South is best for Ireland.</p>
+  <p class="comment">0° = North, 180° = South. South-facing arrays produce most.</p>
 
   <label>Tilt Angle (°): <span id="tiltVal">30</span>°</label>
   <input type="range" id="tilt" min="0" max="60" step="1" value="30" />
-  <p class="comment">Roof tilt angle — 30° is typical. Deviations make small yield difference.</p>
+  <p class="comment">Roof tilt — 30–35° is typical for Ireland.</p>
 
   <label>Shading Factor (%): <span id="shadeVal">100</span>%</label>
   <input type="range" id="shade" min="50" max="100" step="1" value="100" />
-  <p class="comment">100% = unshaded. Lower this if you have chimneys, trees or shading issues.</p>
+  <p class="comment">100% = no shading. Lower for trees, chimneys, obstacles.</p>
 
-  <p>Check your FIT contract — some suppliers may limit total export credits if your system exports unusually large amounts (e.g. above 50 kWp).</p>
+  <p>Check your FIT contract — some suppliers limit total export credits if exports are unusually high (e.g. >50 kWp).</p>
   <p>Check my math! — Happy to nerd out on any variable if you like.</p>
 
   <div id="result"></div>
