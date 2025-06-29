@@ -3,72 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Solar PV Payback Calculator</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-    h2 { text-align: center; }
-    label { display: block; margin-top: 20px; }
-    input[type="range"] { width: 100%; }
-    #result { margin-top: 30px; text-align: center; font-size: 1.2rem; }
-    button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; }
-  </style>
+  <title>Solar PV Payback Calculator — johndavidgordon.com</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Solar PV Payback Calculator</h2>
+  <h1>Solar PV Payback Calculator</h1>
+  <p style="text-align:center; font-size:0.9rem;">by johndavidgordon.com</p>
 
-  <label>System Size (kWp): <span id="sizeVal">5</span> kWp</label>
-  <input type="range" id="size" min="1" max="15" step="0.5" value="5" />
+  <label>System Size (kWp): <span id="sizeVal">5.00</span> kWp</label>
+  <input type="range" id="size" min="1" max="15" step="0.01" value="5.00" />
 
-  <label>System Cost (€): <span id="costVal">8000</span></label>
-  <input type="range" id="cost" min="2000" max="30000" step="500" value="8000" />
+  <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
+  <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
+  <p>Typical domestic unit rate (Electric Ireland, June 2025). Adjust if on day/night tariff.</p>
 
-  <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.15</span></label>
-  <input type="range" id="fit" min="0.05" max="0.30" step="0.01" value="0.15" />
+  <label>Annual Degradation (%): <span id="degVal">0.7</span>%</label>
+  <input type="range" id="deg" min="0" max="2" step="0.1" value="0.7" />
+  <p>Panels typically lose ~0.5–0.8% output per year. Applies equally to rooftop or ground-mount.</p>
 
-  <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
-  <input type="range" id="self" min="0" max="100" step="5" value="40" />
+  <p>Check your FIT contract — some suppliers may limit total export credits if your system exports unusually large amounts (e.g. above 50 kWp).</p>
 
-  <label>Annual Usage (kWh): <span id="useVal">4000</span> kWh</label>
-  <input type="range" id="use" min="2000" max="15000" step="500" value="4000" />
-
-  <button id="calcBtn">Calculate Payback</button>
+  <p>Check my math! — Happy to nerd out on any variable if you like.</p>
 
   <div id="result"></div>
 
-  <script>
-    const sliders = [
-      { id: 'size', out: 'sizeVal' },
-      { id: 'cost', out: 'costVal' },
-      { id: 'fit', out: 'fitVal' },
-      { id: 'self', out: 'selfVal' },
-      { id: 'use', out: 'useVal' }
-    ];
+  <footer style="margin-top:40px; text-align:center; font-size:0.8rem;">
+    This calculator is for general estimates only and does not replace professional design advice!<br/>
+    Please feel free to get in touch with me for clarification on any point — johndavidgordon@gmail.com
+  </footer>
 
-    sliders.forEach(s => {
-      const slider = document.getElementById(s.id);
-      const output = document.getElementById(s.out);
-      slider.oninput = () => output.textContent = slider.value;
-    });
-
-    document.getElementById('calcBtn').onclick = () => {
-      const size = parseFloat(document.getElementById('size').value);
-      const cost = parseFloat(document.getElementById('cost').value);
-      const fit = parseFloat(document.getElementById('fit').value);
-      const self = parseFloat(document.getElementById('self').value) / 100;
-      const usage = parseFloat(document.getElementById('use').value);
-
-      const annualGen = size * 900;
-      const exported = annualGen * (1 - self);
-      const consumed = annualGen * self;
-
-      const saved = consumed * 0.30;
-      const earned = exported * fit;
-
-      const annualBenefit = saved + earned;
-      const payback = cost / annualBenefit;
-
-      document.getElementById('result').textContent = `Estimated Payback Time: ${payback.toFixed(1)} years`;
-    };
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
