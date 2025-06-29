@@ -18,7 +18,7 @@
 
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
   <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
-  <p>Typical domestic unit rate (Electric Ireland, June 2025).</p>
+  <p class="comment">Typical domestic unit rate (Electric Ireland, June 2025).</p>
 
   <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.18</span></label>
   <input type="range" id="fit" min="0.00" max="0.30" step="0.001" value="0.18" />
@@ -26,18 +26,37 @@
   <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
   <input type="range" id="self" min="0" max="100" step="1" value="40" />
 
+  <label>Override Self-Consumption (%): <span id="overrideVal">0</span>%</label>
+  <input type="range" id="override" min="0" max="100" step="1" value="0" />
+  <p class="comment">Use this if you want to force a different self-consumption estimate.</p>
+
   <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
   <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
+  <p class="comment">Installers often bake this in — don’t assume it’s free money.</p>
 
   <label>VAT Rate (%): <span id="vatVal">0</span>%</label>
   <input type="range" id="vat" min="0" max="23" step="0.1" value="0" />
-  <p>“Domestic PV is normally zero-rated. Use 13.5% for small commercial or 23% if advised by installer.”</p>
+  <p class="comment">Domestic PV is normally zero-rated. Use 13.5% for small commercial or 23% if advised by installer.</p>
 
   <label>Annual Degradation (%): <span id="degVal">0.7</span>%</label>
   <input type="range" id="deg" min="0" max="2" step="0.1" value="0.7" />
+  <p class="comment">Panels lose ~0.5–0.8% output per year on average.</p>
 
   <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
   <input type="range" id="usage" min="1000" max="20000" step="10" value="4000" />
+  <p class="comment">Your annual household electricity use.</p>
+
+  <label>Orientation (°): <span id="orientVal">180</span>°</label>
+  <input type="range" id="orient" min="0" max="360" step="1" value="180" />
+  <p class="comment">0° = North, 90° = East, 180° = South, 270° = West. South is best for Ireland.</p>
+
+  <label>Tilt Angle (°): <span id="tiltVal">30</span>°</label>
+  <input type="range" id="tilt" min="0" max="60" step="1" value="30" />
+  <p class="comment">Roof tilt angle — 30° is typical. Deviations make small yield difference.</p>
+
+  <label>Shading Factor (%): <span id="shadeVal">100</span>%</label>
+  <input type="range" id="shade" min="50" max="100" step="1" value="100" />
+  <p class="comment">100% = unshaded. Lower this if you have chimneys, trees or shading issues.</p>
 
   <p>Check your FIT contract — some suppliers may limit total export credits if your system exports unusually large amounts (e.g. above 50 kWp).</p>
   <p>Check my math! — Happy to nerd out on any variable if you like.</p>
