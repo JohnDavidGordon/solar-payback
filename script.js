@@ -31,8 +31,9 @@ function update() {
   tiltVal.textContent = tilt.toFixed(0); shadeVal.textContent = (shade*100).toFixed(0);
 
   const yieldPerKw = 900, tiltF = Math.cos((tilt-30)*Math.PI/180)*0.1 + 0.95, orientF = Math.cos((orient-180)*Math.PI/180)*0.1 + 0.95;
-  const annualGen = size * yieldPerKw * tiltF * orientF * shade, selfUse = annualGen * self, exportKWh = annualGen * (1-self);
-  const annualValue = selfUse*importP + exportKWh*fitP, netCost = cost - grant + cost*vat, payback = netCost/annualValue;
+  const annualGen = size * yieldPerKw * tiltF * orientF * shade;
+  const selfUse = Math.min(annualGen * self, usage);
+  const exportKWh = annualGen - selfUse;  const annualValue = selfUse*importP + exportKWh*fitP, netCost = cost - grant + cost*vat, payback = netCost/annualValue;
   const co2 = annualGen*0.4/1000, trees = co2/0.25, covered = selfUse/usage*100;
 
   document.getElementById("result").innerHTML = `<p><strong>Estimated Annual Savings:</strong> €${annualValue.toFixed(0)}</p><p><strong>Estimated Payback:</strong> ${payback.toFixed(1)} years</p><p><strong>CO₂ avoided per year:</strong> ${co2.toFixed(1)} tonnes (~${trees.toFixed(1)} trees)</p><p><strong>Approx. ${covered.toFixed(1)}% of your annual bill covered</strong></p>`;
