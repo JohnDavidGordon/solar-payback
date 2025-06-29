@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar PV Payback Calculator</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 20px; }
+    input[type="range"] { width: 100%; }
+    #result { margin-top: 30px; text-align: center; font-size: 1.2rem; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Solar PV Payback Calculator</h2>
+
+  <label>System Size (kWp): <span id="sizeVal">5</span> kWp</label>
+  <input type="range" id="size" min="1" max="15" step="0.5" value="5" />
+
+  <label>System Cost (€): <span id="costVal">8000</span></label>
+  <input type="range" id="cost" min="2000" max="30000" step="500" value="8000" />
+
+  <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.15</span></label>
+  <input type="range" id="fit" min="0.05" max="0.30" step="0.01" value="0.15" />
+
+  <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
+  <input type="range" id="self" min="0" max="100" step="5" value="40" />
+
+  <label>Annual Usage (kWh): <span id="useVal">4000</span> kWh</label>
+  <input type="range" id="use" min="2000" max="15000" step="500" value="4000" />
+
+  <button id="calcBtn">Calculate Payback</button>
+
+  <div id="result"></div>
+
+  <script>
+    const sliders = [
+      { id: 'size', out: 'sizeVal' },
+      { id: 'cost', out: 'costVal' },
+      { id: 'fit', out: 'fitVal' },
+      { id: 'self', out: 'selfVal' },
+      { id: 'use', out: 'useVal' }
+    ];
+
+    sliders.forEach(s => {
+      const slider = document.getElementById(s.id);
+      const output = document.getElementById(s.out);
+      slider.oninput = () => output.textContent = slider.value;
+    });
+
+    document.getElementById('calcBtn').onclick = () => {
+      const size = parseFloat(document.getElementById('size').value);
+      const cost = parseFloat(document.getElementById('cost').value);
+      const fit = parseFloat(document.getElementById('fit').value);
+      const self = parseFloat(document.getElementById('self').value) / 100;
+      const usage = parseFloat(document.getElementById('use').value);
+
+      const annualGen = size * 900;
+      const exported = annualGen * (1 - self);
+      const consumed = annualGen * self;
+
+      const saved = consumed * 0.30;
+      const earned = exported * fit;
+
+      const annualBenefit = saved + earned;
+      const payback = cost / annualBenefit;
+
+      document.getElementById('result').textContent = `Estimated Payback Time: ${payback.toFixed(1)} years`;
+    };
+  </script>
+</body>
+</html>
