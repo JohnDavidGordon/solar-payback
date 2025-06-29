@@ -13,23 +13,40 @@
   <label>System Size (kWp): <span id="sizeVal">5.00</span> kWp</label>
   <input type="range" id="size" min="1" max="15" step="0.01" value="5.00" />
 
+  <label>System Cost (€): <span id="costVal">12000</span> €</label>
+  <input type="range" id="cost" min="5000" max="30000" step="100" value="12000" />
+
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
   <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
-  <p>Typical domestic unit rate (Electric Ireland, June 2025). Adjust if on day/night tariff.</p>
+  <p>Typical domestic unit rate (Electric Ireland, June 2025).</p>
+
+  <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.18</span></label>
+  <input type="range" id="fit" min="0.00" max="0.30" step="0.001" value="0.18" />
+
+  <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
+  <input type="range" id="self" min="0" max="100" step="1" value="40" />
+
+  <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
+  <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
+
+  <label>VAT Rate (%): <span id="vatVal">0</span>%</label>
+  <input type="range" id="vat" min="0" max="23" step="0.1" value="0" />
+  <p>“Domestic PV is normally zero-rated. Use 13.5% for small commercial or 23% if advised by installer.”</p>
 
   <label>Annual Degradation (%): <span id="degVal">0.7</span>%</label>
   <input type="range" id="deg" min="0" max="2" step="0.1" value="0.7" />
-  <p>Panels typically lose ~0.5–0.8% output per year. Applies equally to rooftop or ground-mount.</p>
+
+  <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
+  <input type="range" id="usage" min="1000" max="20000" step="10" value="4000" />
 
   <p>Check your FIT contract — some suppliers may limit total export credits if your system exports unusually large amounts (e.g. above 50 kWp).</p>
-
   <p>Check my math! — Happy to nerd out on any variable if you like.</p>
 
   <div id="result"></div>
 
   <footer style="margin-top:40px; text-align:center; font-size:0.8rem;">
     This calculator is for general estimates only and does not replace professional design advice!<br/>
-    Please feel free to get in touch with me for clarification on any point — johndavidgordon@gmail.com
+    Please feel free to get in touch — johndavidgordon@gmail.com
   </footer>
 
   <script src="script.js"></script>
