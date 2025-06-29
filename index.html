@@ -12,51 +12,51 @@
 
   <label>System Size (kWp): <span id="sizeVal">5.00</span> kWp</label>
   <input type="range" id="size" min="1" max="15" step="0.01" value="5.00" />
-  <p class="comment">Your planned solar array’s total peak output capacity.</p>
+  <p class="comment">The total maximum nameplate power your solar panels can produce under ideal test conditions. Note: this rarely happens — lab tests and the real world differ. For example, a new 5.6 kWp array might only produce 5.2 kW even on a good day.</p>
 
   <label>System Cost (€): <span id="costVal">12000</span> €</label>
   <input type="range" id="cost" min="5000" max="30000" step="100" value="12000" />
-  <p class="comment">Full installed cost, including battery if you have one.</p>
+  <p class="comment">Total installed cost, including any battery storage or extra wiring. Many quotes are ‘after grant’ — check very carefully if your grant is already subtracted!</p>
 
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
   <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
-  <p class="comment">What you pay for grid electricity. Typical: ~34–40 c/kWh.</p>
+  <p class="comment">What you pay your supplier for grid electricity. Most Irish homes pay 34–40 c/kWh (single rate). If you are on a variable rate, use your average.</p>
 
   <label>Feed-in Tariff (€/kWh): <span id="fitVal">0.18</span></label>
   <input type="range" id="fit" min="0.00" max="0.30" step="0.001" value="0.18" />
-  <p class="comment">What your supplier pays for surplus exported units.</p>
+  <p class="comment">What your supplier pays you for surplus units exported to the grid. Note: the house always wins — typically Irish electricity sellers charge you double for what you give back.</p>
 
   <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
   <input type="range" id="self" min="0" max="100" step="1" value="40" />
-  <p class="comment">How much of your solar you use directly. More battery = higher %.</p>
+  <p class="comment">This is a surprisingly important variable you need to think about. How much of your solar you use directly. The more you run appliances during daylight, the higher this is. Adding a battery typically raises this by ~5% per kWh usable (e.g. a 5 kWh battery ≈ +25%). Around 50–60% is typical for Irish systems without a large battery. Very nerdy people, or big battery setups, can approach 90% or above — but this is very unusual.</p>
 
   <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
   <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
-  <p class="comment">SEAI grant — note: many installers factor this into their price.</p>
+  <p class="comment">SEAI grant amount. Be aware: many installers simply adjust their quote to ‘absorb’ this. It’s rarely a true bonus.</p>
 
   <label>VAT Rate (%): <span id="vatVal">0</span>%</label>
   <input type="range" id="vat" min="0" max="23" step="0.1" value="0" />
-  <p class="comment">Most domestic installs are zero-rated. Use 13.5% for small commercial.</p>
+  <p class="comment">Most domestic solar installs are zero-rated for VAT in Ireland. Use 13.5% for small commercial projects, or 23% if your installer specifically advises. This depends on how the system is bundled with other works or if it’s treated as a general building improvement rather than energy upgrade only. If you’re a homeowner buying a new system from a conventional company, it’s probably 0%.</p>
 
   <label>Annual Degradation (%): <span id="degVal">0.7</span>%</label>
   <input type="range" id="deg" min="0" max="2" step="0.1" value="0.7" />
-  <p class="comment">Annual output loss — standard panels lose ~0.5–0.8%/yr.</p>
+  <p class="comment">Annual output loss — standard panels lose ~0.5–0.8% per year. Modern panels degrade slowly, but it’s worth including to stay realistic. This is where Tier 1 panels shine above cheaper brands.</p>
 
   <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
   <input type="range" id="usage" min="1000" max="20000" step="10" value="4000" />
-  <p class="comment">Your total household electricity use per year.</p>
+  <p class="comment">Your total household electricity use per year. You’ll find this on your annual bill or smart meter summary. The SEAI frequently trot out the 4,200 kWh/year figure, but most houses are now well above that.</p>
 
   <label>Orientation (°): <span id="orientVal">180</span>°</label>
   <input type="range" id="orient" min="0" max="360" step="1" value="180" />
-  <p class="comment">0° = North, 180° = South. South-facing arrays produce most.</p>
+  <p class="comment">0° = North, 90° = East, 180° = South, 270° = West (clockwise). South-facing arrays produce the most in Ireland. East or West-facing arrays produce less overall but can match your morning or evening use better. In cost-effective setups, even North-facing panels can be worthwhile.</p>
 
   <label>Tilt Angle (°): <span id="tiltVal">30</span>°</label>
   <input type="range" id="tilt" min="0" max="60" step="1" value="30" />
-  <p class="comment">Roof tilt — 30–35° is typical for Ireland.</p>
+  <p class="comment">Roof or ground mount tilt — 20–35° is typical for Irish roofs. Ground-mount tilt obviously can be set more freely. Tilt only has a mild effect on annual yield within normal ranges.</p>
 
   <label>Shading Factor (%): <span id="shadeVal">100</span>%</label>
   <input type="range" id="shade" min="50" max="100" step="1" value="100" />
-  <p class="comment">100% = no shading. Lower for trees, chimneys, obstacles.</p>
+  <p class="comment">100% = no shading. Reduce this if trees, chimneys or nearby buildings block light at any time. Shading is the single biggest hidden loss for many Irish arrays.</p>
 
   <p>Check your FIT contract — some suppliers limit total export credits if exports are unusually high (e.g. >50 kWp).</p>
   <p>Check my math! — Happy to nerd out on any variable if you like.</p>

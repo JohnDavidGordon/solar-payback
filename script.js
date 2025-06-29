@@ -35,6 +35,6 @@ function update() {
   const annualValue = selfUse*importP + exportKWh*fitP, netCost = cost - grant + cost*vat, payback = netCost/annualValue;
   const co2 = annualGen*0.4/1000, trees = co2/0.25, covered = selfUse/usage*100;
 
-  document.getElementById("result").innerHTML = `<h3>Estimated Annual Savings: €${annualValue.toFixed(0)}</h3><p>Estimated Payback: ${payback.toFixed(1)} years</p><p>CO₂ avoided per year: ${co2.toFixed(1)} tonnes (~${trees.toFixed(1)} trees)</p><p>Approx. ${covered.toFixed(1)}% of your annual bill covered</p>`;
+  document.getElementById("result").innerHTML = `<p><strong>Estimated Annual Savings:</strong> €${annualValue.toFixed(0)}</p><p><strong>Estimated Payback:</strong> ${payback.toFixed(1)} years</p><p><strong>CO₂ avoided per year:</strong> ${co2.toFixed(1)} tonnes (~${trees.toFixed(1)} trees)</p><p><strong>Approx. ${covered.toFixed(1)}% of your annual bill covered</strong></p>`;
 }
 update();
