@@ -1,4 +1,12 @@
-
+const sizeVal = document.getElementById("sizeVal");
+const costVal = document.getElementById("costVal");
+const importVal = document.getElementById("importVal");
+const fitVal = document.getElementById("fitVal");
+const selfVal = document.getElementById("selfVal");
+const grantVal = document.getElementById("grantVal");
+const vatVal = document.getElementById("vatVal");
+const degVal = document.getElementById("degVal");
+const usageVal = document.getElementById("usageVal");
 // Connect sliders to display and calculation
 const ids = ["size", "cost", "import", "fit", "self", "grant", "vat", "deg", "usage"];
 ids.forEach(id => {
