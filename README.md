@@ -1,2 +1,2 @@
 # solar-payback
-Soalr PV system payback calculator (years)
+Solar PV system payback calculator (years)
