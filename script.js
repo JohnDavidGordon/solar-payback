@@ -1,3 +1,4 @@
+
 const sizeVal = document.getElementById("sizeVal");
 const costVal = document.getElementById("costVal");
 const importVal = document.getElementById("importVal");
@@ -7,31 +8,31 @@ const grantVal = document.getElementById("grantVal");
 const vatVal = document.getElementById("vatVal");
 const degVal = document.getElementById("degVal");
 const usageVal = document.getElementById("usageVal");
-// Connect sliders to display and calculation
+
 const ids = ["size", "cost", "import", "fit", "self", "grant", "vat", "deg", "usage"];
 ids.forEach(id => {
   document.getElementById(id).addEventListener('input', update);
 });
 
 function update() {
-  const size = parseFloat(size.value);
-  const cost = parseFloat(cost.value);
-  const importP = parseFloat(import.value);
-  const fitP = parseFloat(fit.value);
-  const self = parseFloat(self.value) / 100;
-  const grant = parseFloat(grant.value);
-  const vat = parseFloat(vat.value) / 100;
-  const deg = parseFloat(deg.value) / 100;
-  const usage = parseFloat(usage.value);
+  const size = parseFloat(sizeInput.value);
+  const cost = parseFloat(costInput.value);
+  const importP = parseFloat(importInput.value);
+  const fitP = parseFloat(fitInput.value);
+  const self = parseFloat(selfInput.value) / 100;
+  const grant = parseFloat(grantInput.value);
+  const vat = parseFloat(vatInput.value) / 100;
+  const deg = parseFloat(degInput.value) / 100;
+  const usage = parseFloat(usageInput.value);
 
   sizeVal.textContent = size.toFixed(2);
   costVal.textContent = cost.toFixed(0);
   importVal.textContent = importP.toFixed(3);
   fitVal.textContent = fitP.toFixed(3);
-  selfVal.textContent = (self*100).toFixed(0);
+  selfVal.textContent = (self * 100).toFixed(0);
   grantVal.textContent = grant.toFixed(0);
-  vatVal.textContent = (vat*100).toFixed(1);
-  degVal.textContent = (deg*100).toFixed(1);
+  vatVal.textContent = (vat * 100).toFixed(1);
+  degVal.textContent = (deg * 100).toFixed(1);
   usageVal.textContent = usage.toFixed(0);
 
   const yieldPerKw = 900;
@@ -54,5 +55,15 @@ function update() {
     <p>Approx. ${covered.toFixed(1)}% of your annual bill covered</p>
   `;
 }
+
+const sizeInput = document.getElementById("size");
+const costInput = document.getElementById("cost");
+const importInput = document.getElementById("import");
+const fitInput = document.getElementById("fit");
+const selfInput = document.getElementById("self");
+const grantInput = document.getElementById("grant");
+const vatInput = document.getElementById("vat");
+const degInput = document.getElementById("deg");
+const usageInput = document.getElementById("usage");
 
 update();
