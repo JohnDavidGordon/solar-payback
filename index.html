@@ -29,11 +29,11 @@
 
   <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
   <input type="range" id="self" min="0" max="100" step="1" value="40" />
-  <p class="comment">This is a surprisingly important variable you need to think about. How much of your solar you use directly. The more you run appliances during daylight, the higher this is. Adding a battery typically raises this by ~5% per kWh usable (e.g. a 5 kWh battery ≈ +25%). Around 50–60% is typical for Irish systems without a large battery. Very nerdy people, or big battery setups, can approach 90% or above — but this is very unusual.</p>
+  <p class="comment">This is a surprisingly important variable you need to think about. How much of your solar do you use directly? The more you run appliances during daylight, the higher this is. Adding a battery typically raises this by ~5% per kWh usable (e.g. a 5 kWh battery ≈ +25%). Around 50–60% is typical for Irish systems without a large battery. Very nerdy people, or big battery setups, can approach 90% or above — but this is very unusual.</p>
 
   <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
   <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
-  <p class="comment">SEAI grant amount. Be aware: many installers simply adjust their quote to ‘absorb’ this. It’s rarely a true bonus.</p>
+  <p class="comment">SEAI grant amount. Be aware: many installers simply adjust their quote to ‘absorb’ this. It’s rarely a true bonus. Don't add this in here if you've already subtracted it from the System Cost, above.</p>
 
   <label>VAT Rate (%): <span id="vatVal">0</span>%</label>
   <input type="range" id="vat" min="0" max="23" step="0.1" value="0" />
@@ -45,15 +45,15 @@
 
   <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
   <input type="range" id="usage" min="1000" max="20000" step="10" value="5000" />
-  <p class="comment">Your total household electricity use per year. You’ll find this on your annual bill or smart meter summary. The SEAI frequently trot out the 4,200 kWh/year figure, but most houses are now well above that. Most households invariably increase their electricity consumption after installing solar panels! </p>
+  <p class="comment">Your total household electricity use per year. You can find this information on your annual bill or smart meter summary. The SEAI frequently trot out the 4,200 kWh/year figure, but most houses are now well above that. Most households invariably increase their electricity consumption after installing solar panels! </p>
 
   <label>Daily Standing Charge (€): <span id="dailyVal">0.75</span> €/day</label>
   <input type="range" id="daily" min="0" max="2" step="0.01" value="0.75" />
-  <p class="comment">Your supplier’s daily charge — you pay this regardless of solar. Typically €0.50–€1.00/day. Note: The PSO Levy is currently zero or refunded — check your supplier’s latest tariff.</p>
+  <p class="comment">Your supplier’s daily charge — you pay this regardless of solar. Typically €0.50–€1.00 per day. Note: The PSO Levy is currently zero or refunded — check your supplier’s latest tariff.</p>
 
   <label>Orientation (°): <span id="orientVal">180</span>°</label>
   <input type="range" id="orient" min="0" max="360" step="1" value="180" />
-  <p class="comment">0° = North, 90° = East, 180° = South, 270° = West (clockwise). South-facing arrays produce the most in Ireland. East or West-facing arrays produce less overall but can match your morning or evening use better. In cost-effective setups, even North-facing panels can be worthwhile.</p>
+  <p class="comment">0° = North, 90° = East, 180° = South, 270° = West (clockwise). South-facing arrays produce the most in Ireland. East- or West-facing arrays produce less overall, but can better match your morning or evening usage. In cost-effective setups, even North-facing panels can be worthwhile.</p>
 
   <label>Tilt Angle (°): <span id="tiltVal">30</span>°</label>
   <input type="range" id="tilt" min="0" max="60" step="1" value="30" />
