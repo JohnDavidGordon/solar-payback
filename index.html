@@ -17,7 +17,7 @@
 
   <label>Max Inverter Output (kW AC): <span id="inverterVal">6.00</span> kW</label>
   <input type="range" id="inverter" min="1" max="10" step="0.1" value="6.00" />
-  <p class="comment">Your inverter’s AC output limit caps peak export. Oversizing your panels above the inverter output adds shoulder/winter yield but clips very sunny peaks. A bit of oversizing is normal!</p>
+  <p class="comment">Your inverter’s AC output limit caps how much you can export at peak times. Oversizing your solar panel array above this boosts yield in shoulder months and winter, but clips output on very sunny days. Some oversizing is normal — especially if you’re DC-coupled.</p>
 
   <label>System Coupling:</label>
 <div class="toggle-group">
@@ -25,7 +25,7 @@
   <label><input type="radio" name="coupling" value="dc"> DC-coupled</label>
 </div>
 <p class="comment">
-  If your system is DC-coupled (battery direct or hybrid inverter), surplus solar can be stored before it hits your inverter’s AC limit — so you’ll see significantly less clipping. Most Irish systems are AC-coupled only. DC/hybrid setups are growing but still under 10% of installs.
+  If your system is DC-coupled (battery direct or hybrid inverter), surplus solar can be stored before it hits your inverter’s AC limit, so you’ll see significantly less clipping. Most Irish systems are AC-coupled only. DC/hybrid setups are growing but still under 10% of installs.
 </p>
 
   <label>System Cost (€): <span id="costVal">12000</span> €</label>
