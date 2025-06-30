@@ -15,10 +15,9 @@
   <p class="comment">The total maximum nameplate power your solar panels can produce under ideal test conditions. Note: this rarely happens — lab tests and the real world differ. For example, a new 5.6 kWp array might only produce 5.2 kW even on a good day.</p>
   <p class="comment">Many Irish homes ‘overpanel’ — extra panels may slightly clip peak output on bright days but increase yield in shoulder months and winter. Expect ~5–15% clipping if you greatly oversize.</p>
 
-  <label>System Size (kWp): ... </label>
-  <input type="range" id="size" ... />
-  <p class="comment">The total maximum nameplate ...</p>
-  <p class="comment">Many Irish homes ‘overpanel’ ...</p>
+  <label>Max Inverter Output (kW AC): <span id="inverterVal">6.00</span> kW</label>
+<input type="range" id="inverter" min="1" max="10" step="0.1" value="6.00" />
+<p class="comment">Your inverter’s AC output limit caps peak export. Oversizing your panels above the inverter output adds shoulder/winter yield but clips very sunny peaks. A bit of oversizing is normal!</p>
   
   <label>System Cost (€): <span id="costVal">12000</span> €</label>
   <input type="range" id="cost" min="5000" max="30000" step="100" value="12000" />
