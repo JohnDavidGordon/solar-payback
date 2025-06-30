@@ -3,4 +3,4 @@ body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; line
 input[type=range] { width: 100%; margin-bottom: 5px; }
 label { display: block; margin-top: 20px; }
 .comment { font-size: 0.85rem; margin-top: 2px; margin-bottom: 12px; color: #555; }
-#result { margin-top: 40px; background: #f2f2f2; padding: 20px; border-radius: 5px; }
+#result { position: fixed; bottom: 0; left: 0; right: 0; background: #f2f2f2; padding: 20px; border-top: 2px solid #ddd; text-align: center; font-size: 1rem; z-index: 1000; }

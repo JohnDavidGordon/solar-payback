@@ -13,6 +13,7 @@
   <label>System Size (kWp): <span id="sizeVal">5.00</span> kWp</label>
   <input type="range" id="size" min="1" max="15" step="0.01" value="5.00" />
   <p class="comment">The total maximum nameplate power your solar panels can produce under ideal test conditions. Note: this rarely happens — lab tests and the real world differ. For example, a new 5.6 kWp array might only produce 5.2 kW even on a good day.</p>
+  <p class="comment">Many Irish homes ‘overpanel’ — extra panels may slightly clip peak output on bright days but increase yield in shoulder months and winter. Expect ~5–15% clipping if you greatly oversize.</p>
 
   <label>System Cost (€): <span id="costVal">12000</span> €</label>
   <input type="range" id="cost" min="5000" max="30000" step="100" value="12000" />
@@ -44,7 +45,11 @@
 
   <label>Annual Usage (kWh): <span id="usageVal">4000</span> kWh</label>
   <input type="range" id="usage" min="1000" max="20000" step="10" value="4000" />
-  <p class="comment">Your total household electricity use per year. You’ll find this on your annual bill or smart meter summary. The SEAI frequently trot out the 4,200 kWh/year figure, but most houses are now well above that. Annual Usage (kWh) shouldn’t directly affect Annual Savings, because your savings come from what your panels produce and how much of that you self-consume, not from your total demand as such.</p>
+  <p class="comment">Your total household electricity use per year. You’ll find this on your annual bill or smart meter summary. The SEAI frequently trot out the 4,200 kWh/year figure, but most houses are now well above that.</p>
+
+  <label>Daily Standing Charge (€): <span id="dailyVal">0.75</span> €/day</label>
+  <input type="range" id="daily" min="0" max="2" step="0.01" value="0.75" />
+  <p class="comment">Your supplier’s daily charge — you pay this regardless of solar. Typically €0.50–€1.00/day. Note: The PSO Levy is currently zero or refunded — check your supplier’s latest tariff.</p>
 
   <label>Orientation (°): <span id="orientVal">180</span>°</label>
   <input type="range" id="orient" min="0" max="360" step="1" value="180" />
