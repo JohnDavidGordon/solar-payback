@@ -58,8 +58,16 @@ function update() {
   const tiltF = Math.cos((tilt-30)*Math.PI/180)*0.1 + 0.95;
   const orientF = Math.cos((orient-180)*Math.PI/180)*0.1 + 0.95;
 
-  const clippedSize = (coupling === "ac") ? Math.min(size, inverter) : size;
+let clippedSize;
 
+if (coupling === "ac") {
+  clippedSize = Math.min(size, inverter);
+} else {
+  // DC: only partially clipped to reflect storage / diverter benefit
+  const clipLoss = Math.max(0, size - inverter);
+  clippedSize = inverter + clipLoss * 0.5;  // e.g. 50% of overpanelling used
+  clippedSize = Math.min(clippedSize, size); // don’t exceed physical array size
+}
   const annualGenRaw = clippedSize * yieldPerKw * tiltF * orientF * shade;
   const annualGen = annualGenRaw * (1 - deg);
   const selfUse = Math.min(annualGen * self, usage);
