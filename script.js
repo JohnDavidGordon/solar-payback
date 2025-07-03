@@ -17,6 +17,7 @@ const orientVal = document.getElementById("orientVal");
 const tiltVal = document.getElementById("tiltVal");
 const shadeVal = document.getElementById("shadeVal");
 
+
 // === Event hook ===
 const ids = ["size","inverter","battery","cost","import","fit","self","grant","vat","deg","usage","daily","orient","tilt","shade"];
 ids.forEach(id => {
@@ -86,6 +87,7 @@ function update() {
   orientVal.textContent = orient.toFixed(0);
   tiltVal.textContent = tilt.toFixed(0);
   shadeVal.textContent = (shade * 100).toFixed(0);
+  batteryVal.textContent = battery.toFixed(1);
 
   // === Main calc ===
   const yieldPerKw = 900;
