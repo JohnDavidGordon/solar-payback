@@ -1,5 +1,6 @@
 console.log("✅ script.js is running");
 
+// === Get elements ===
 const sizeVal = document.getElementById("sizeVal");
 const inverterVal = document.getElementById("inverterVal");
 const batteryVal = document.getElementById("batteryVal");
@@ -16,19 +17,28 @@ const orientVal = document.getElementById("orientVal");
 const tiltVal = document.getElementById("tiltVal");
 const shadeVal = document.getElementById("shadeVal");
 
-let scIsManual = false;
-
+// === Event hook ===
 const ids = ["size","inverter","battery","cost","import","fit","self","grant","vat","deg","usage","daily","orient","tilt","shade"];
 ids.forEach(id => {
-  document.getElementById(id).addEventListener('input', () => {
-    if (id === "self") scIsManual = true;
-    update();
-  });
+  document.getElementById(id).addEventListener('input', update);
 });
-
 document.querySelectorAll('input[name="coupling"]').forEach(r => r.addEventListener('change', update));
 
+// === Manual SC flag ===
+let scIsManual = false;
+document.getElementById("self").addEventListener('input', () => {
+  scIsManual = true;
+  update();
+});
+
+// === Main update ===
 function update() {
+  // Force battery to zero once if needed
+  if (!window.batteryResetDone) {
+    document.getElementById("battery").value = 0;
+    window.batteryResetDone = true;
+  }
+
   const s = x => parseFloat(document.getElementById(x).value);
   const size = s("size"),
         inverter = s("inverter"),
@@ -48,42 +58,41 @@ function update() {
   const coupling = document.querySelector('input[name="coupling"]:checked').value;
 
   // Self-consumption logic
-  let self = s("self")/100;
-
-  if (!scIsManual) {
-    let autoSC = 40 + battery * (coupling === "ac" ? 5 : 7);
-    autoSC = Math.min(autoSC, 90);
-    self = autoSC / 100;
-    document.getElementById("self").value = autoSC;
+  let self = s("self") / 100;
+  if (!scIsManual && battery > 0) {
+    const bump = battery * (coupling === "ac" ? 5 : 7);
+    self = Math.min((40 + bump) / 100, 1.0); // 40% base, add bump, max 100%
+    document.getElementById("self").value = (self * 100).toFixed(0);
   }
 
+  // === Update UI ===
   sizeVal.textContent = size.toFixed(2);
   inverterVal.textContent = inverter.toFixed(1);
   batteryVal.textContent = battery.toFixed(1);
   costVal.textContent = cost.toFixed(0);
   importVal.textContent = importP.toFixed(3);
   fitVal.textContent = fitP.toFixed(3);
-  selfVal.textContent = (self*100).toFixed(0);
+  selfVal.textContent = (self * 100).toFixed(0);
   grantVal.textContent = grant.toFixed(0);
-  vatVal.textContent = (vat*100).toFixed(1);
-  degVal.textContent = (deg*100).toFixed(1);
+  vatVal.textContent = (vat * 100).toFixed(1);
+  degVal.textContent = (deg * 100).toFixed(1);
   usageVal.textContent = usage.toFixed(0);
   dailyVal.textContent = daily.toFixed(2);
   orientVal.textContent = orient.toFixed(0);
   tiltVal.textContent = tilt.toFixed(0);
-  shadeVal.textContent = (shade*100).toFixed(0);
+  shadeVal.textContent = (shade * 100).toFixed(0);
 
-  // Clipping
+  // === Main calc ===
   const yieldPerKw = 900;
-  const tiltF = Math.cos((tilt-30)*Math.PI/180)*0.1 + 0.95;
-  const orientF = Math.cos((orient-180)*Math.PI/180)*0.1 + 0.95;
+  const tiltF = Math.cos((tilt - 30) * Math.PI / 180) * 0.1 + 0.95;
+  const orientF = Math.cos((orient - 180) * Math.PI / 180) * 0.1 + 0.95;
 
-  let clippedSize;
+  let clippedSize = size;
   if (coupling === "ac") {
     clippedSize = Math.min(size, inverter);
   } else {
     const clipLoss = Math.max(0, size - inverter);
-    clippedSize = inverter + clipLoss * 0.5;
+    clippedSize = inverter + clipLoss * 0.5; 
     clippedSize = Math.min(clippedSize, size);
   }
 
