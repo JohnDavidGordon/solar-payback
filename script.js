@@ -1,3 +1,4 @@
+console.log("✅ script.js is running");
 const sizeVal = document.getElementById("sizeVal");
 const inverterVal = document.getElementById("inverterVal");
 const costVal = document.getElementById("costVal");
