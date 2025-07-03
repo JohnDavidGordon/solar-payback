@@ -22,6 +22,7 @@ ids.forEach(id => {
 document.querySelectorAll('input[name="coupling"]').forEach(r => r.addEventListener('change', update));
 
 function update() {
+  console.log("✅ update() is running");
   const s = x => parseFloat(document.getElementById(x).value);
   const size = s("size"),
         inverter = s("inverter"),
