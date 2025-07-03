@@ -26,12 +26,10 @@ let scIsManual = false;
 
 document.getElementById("self").addEventListener('input', () => {
   scIsManual = true;
-  update();
 });
 
 function update() {
   const s = x => parseFloat(document.getElementById(x).value);
-
   const size = s("size"),
         inverter = s("inverter"),
         battery = s("battery"),
@@ -47,14 +45,28 @@ function update() {
         tilt = s("tilt"),
         shade = s("shade")/100;
 
-  const coupling = document.querySelector('input[name="coupling"]:checked").value;
+  const coupling = document.querySelector('input[name="coupling"]:checked').value;
 
+  // Battery slider value
+  batteryVal.textContent = battery.toFixed(1);
+
+  // If not manually overridden, auto-adjust SC
+  let scBase = s("self") / 100;
+  if (!scIsManual) {
+    const batteryEffect = (coupling === "ac") ? battery * 0.05 : battery * 0.07;
+    scBase = Math.min(1, 0.35 + batteryEffect);
+    document.getElementById("self").value = (scBase * 100).toFixed(0);
+  }
+
+  const self = s("self")/100;
+
+  // Update value labels
   sizeVal.textContent = size.toFixed(2);
   inverterVal.textContent = inverter.toFixed(1);
-  batteryVal.textContent = battery.toFixed(1);
   costVal.textContent = cost.toFixed(0);
   importVal.textContent = importP.toFixed(3);
   fitVal.textContent = fitP.toFixed(3);
+  selfVal.textContent = (self*100).toFixed(0);
   grantVal.textContent = grant.toFixed(0);
   vatVal.textContent = (vat*100).toFixed(1);
   degVal.textContent = (deg*100).toFixed(1);
@@ -64,28 +76,7 @@ function update() {
   tiltVal.textContent = tilt.toFixed(0);
   shadeVal.textContent = (shade*100).toFixed(0);
 
-  const selfBase = 0.35;
-  let self = selfBase;
-
-  if (!scIsManual && battery > 0) {
-    if (coupling === "ac") {
-      self += battery * 0.05;
-    } else {
-      self += battery * 0.07;
-    }
-  }
-
-  if (scIsManual) {
-    self = s("self")/100;
-  }
-
-  if (!scIsManual) {
-    // Show the *computed* SC value when in auto mode
-    document.getElementById("self").value = (self * 100).toFixed(0);
-  }
-
-  selfVal.textContent = (self * 100).toFixed(0);
-
+  // Clipping logic
   const yieldPerKw = 900;
   const tiltF = Math.cos((tilt-30)*Math.PI/180)*0.1 + 0.95;
   const orientF = Math.cos((orient-180)*Math.PI/180)*0.1 + 0.95;
@@ -104,11 +95,11 @@ function update() {
   const selfUse = Math.min(annualGen * self, usage);
   const exportKWh = annualGen - selfUse;
 
-  const annualValueGross = selfUse * importP + exportKWh * fitP;
+  const annualValueGross = selfUse*importP + exportKWh*fitP;
   const annualStanding = daily * 365;
   const annualValue = annualValueGross - annualStanding;
 
-  const netCost = cost - grant + cost * vat;
+  const netCost = cost - grant + cost*vat;
   const payback = netCost / annualValue;
 
   const co2 = annualGen * 0.4 / 1000;
