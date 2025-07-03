@@ -1,6 +1,5 @@
 console.log("✅ script.js is running");
 
-// All value spans
 const sizeVal = document.getElementById("sizeVal");
 const inverterVal = document.getElementById("inverterVal");
 const batteryVal = document.getElementById("batteryVal");
@@ -23,15 +22,16 @@ ids.forEach(id => {
 });
 document.querySelectorAll('input[name="coupling"]').forEach(r => r.addEventListener('change', update));
 
-// Read base SC directly from slider
-let scBase = parseFloat(document.getElementById("self").value);
 let scIsManual = false;
 
-// Reset battery to 0 every page load
-document.getElementById("battery").value = 0;
+document.getElementById("self").addEventListener('input', () => {
+  scIsManual = true;
+  update();
+});
 
 function update() {
   const s = x => parseFloat(document.getElementById(x).value);
+
   const size = s("size"),
         inverter = s("inverter"),
         battery = s("battery"),
@@ -47,36 +47,14 @@ function update() {
         tilt = s("tilt"),
         shade = s("shade")/100;
 
-  const coupling = document.querySelector('input[name="coupling"]:checked').value;
+  const coupling = document.querySelector('input[name="coupling"]:checked").value;
 
-  // Self-consumption base + battery boost
-  let scEffective = scBase;
-
-  if (!scIsManual && battery > 0) {
-    const batteryBoost = battery * (coupling === "ac" ? 5 : 7);
-    scEffective = scBase + batteryBoost;
-  }
-
-  if (scIsManual) {
-    scEffective = s("self");
-  }
-
-  // Keep within 0–100
-  scEffective = Math.min(scEffective, 100);
-
-  // If auto-boosted, move slider visually:
-  if (!scIsManual) {
-    document.getElementById("self").value = scEffective.toFixed(0);
-  }
-
-  // Write values
   sizeVal.textContent = size.toFixed(2);
   inverterVal.textContent = inverter.toFixed(1);
   batteryVal.textContent = battery.toFixed(1);
   costVal.textContent = cost.toFixed(0);
   importVal.textContent = importP.toFixed(3);
   fitVal.textContent = fitP.toFixed(3);
-  selfVal.textContent = scEffective.toFixed(0);
   grantVal.textContent = grant.toFixed(0);
   vatVal.textContent = (vat*100).toFixed(1);
   degVal.textContent = (deg*100).toFixed(1);
@@ -85,6 +63,28 @@ function update() {
   orientVal.textContent = orient.toFixed(0);
   tiltVal.textContent = tilt.toFixed(0);
   shadeVal.textContent = (shade*100).toFixed(0);
+
+  const selfBase = 0.35;
+  let self = selfBase;
+
+  if (!scIsManual && battery > 0) {
+    if (coupling === "ac") {
+      self += battery * 0.05;
+    } else {
+      self += battery * 0.07;
+    }
+  }
+
+  if (scIsManual) {
+    self = s("self")/100;
+  }
+
+  if (!scIsManual) {
+    // Show the *computed* SC value when in auto mode
+    document.getElementById("self").value = (self * 100).toFixed(0);
+  }
+
+  selfVal.textContent = (self * 100).toFixed(0);
 
   const yieldPerKw = 900;
   const tiltF = Math.cos((tilt-30)*Math.PI/180)*0.1 + 0.95;
@@ -101,14 +101,14 @@ function update() {
 
   const annualGenRaw = clippedSize * yieldPerKw * tiltF * orientF * shade;
   const annualGen = annualGenRaw * (1 - deg);
-  const selfUse = Math.min(annualGen * (scEffective / 100), usage);
+  const selfUse = Math.min(annualGen * self, usage);
   const exportKWh = annualGen - selfUse;
 
-  const annualValueGross = selfUse*importP + exportKWh*fitP;
+  const annualValueGross = selfUse * importP + exportKWh * fitP;
   const annualStanding = daily * 365;
   const annualValue = annualValueGross - annualStanding;
 
-  const netCost = cost - grant + cost*vat;
+  const netCost = cost - grant + cost * vat;
   const payback = netCost / annualValue;
 
   const co2 = annualGen * 0.4 / 1000;
@@ -124,10 +124,5 @@ function update() {
     <p><strong>Approx. return on investment:</strong> ${roi.toFixed(1)}% p.a.</p>
   `;
 }
-
-// Flip to manual SC if user moves SC slider
-document.getElementById("self").addEventListener('input', () => {
-  scIsManual = true;
-});
 
 update();
