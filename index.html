@@ -22,12 +22,6 @@
   <input type="range" id="inverter" min="1" max="10" step="0.1" value="6.00" />
   <p class="comment">Your inverter’s AC output limit determines how much you can export, even if your array could produce more power if it was allowed to (very sunny conditions). Oversizing your solar panel array above this boosts yield in shoulder months and winter, but clips output on very sunny days. Some oversizing is normal — especially if you’re DC-coupled. Note: under Ireland’s microgeneration scheme, the export limit is 6 kW AC (sometimes referred to as 6 kVA).</p>
 
-  <label>Battery Size (kWh usable): <span id="batteryVal">0.0</span> kWh</label>
-  <input type="range" id="battery" min="0" max="40" step="0.1" value="0.0" />
-  <p class="comment">
-  A battery stores excess solar for night-time or cloudy spells. Each kWh of usable capacity adds about +5% self-consumption for AC-coupled systems, or +7% for DC-coupled. E.g. a 5 kWh battery ≈ +25% if AC-coupled. Leave this at zero if you don’t have one. If you get the battery cost itemised by your installer, adjust the total cost above to check if it’s worth it — it almost always is. Also check: does “5 kWh” mean <em>usable?</em> Look for Depth of Discharge and round-trip efficiency in the specs.
-  </p>
-
   <label>System Coupling:</label>
   <div class="toggle-group">
   <label><input type="radio" name="coupling" value="ac" checked> AC-coupled</label>
@@ -35,6 +29,12 @@
   </div>
   <p class="comment">
   If your system is DC-coupled (battery direct or hybrid inverter), surplus solar can be stored before it hits your inverter’s AC limit, so you’ll see significantly less clipping. Most Irish systems are AC-coupled only. DC/hybrid setups are growing but still under 10% of installs.
+  </p>
+
+  <label>Battery Size (kWh usable): <span id="batteryVal">0.0</span> kWh</label>
+  <input type="range" id="battery" min="0" max="40" step="0.1" value="0.0" />
+  <p class="comment">
+  A battery stores excess solar for night-time or cloudy spells. Each kWh of usable capacity adds about +5% self-consumption for AC-coupled systems, or +7% for DC-coupled. E.g. a 5 kWh battery ≈ +25% if AC-coupled. Leave this at zero if you don’t have one. If you get the battery cost itemised by your installer, adjust the total cost above to check if it’s worth it — it almost always is. Also check: does “5 kWh” mean <em>usable?</em> Look for Depth of Discharge and round-trip efficiency in the specs.
   </p>
 
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
