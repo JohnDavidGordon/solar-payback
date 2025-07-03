@@ -42,8 +42,9 @@ function update() {
         tilt = s("tilt"),
         shade = s("shade")/100;
 
-  const coupling = document.querySelector('input[name="coupling"]:checked').value;
-
+const selectedCoupling = document.querySelector('input[name="coupling"]:checked');
+const coupling = selectedCoupling ? selectedCoupling.value : "ac";
+  
   sizeVal.textContent = size.toFixed(2);
   inverterVal.textContent = inverter.toFixed(1);
   costVal.textContent = cost.toFixed(0);
