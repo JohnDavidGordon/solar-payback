@@ -22,14 +22,21 @@
   <input type="range" id="inverter" min="1" max="10" step="0.1" value="6.00" />
   <p class="comment">Your inverter’s AC output limit determines how much you can export, even if your array could produce more power if it was allowed to (very sunny conditions). Oversizing your solar panel array above this boosts yield in shoulder months and winter, but clips output on very sunny days. Some oversizing is normal — especially if you’re DC-coupled. Note: under Ireland’s microgeneration scheme, the export limit is 6 kW AC (sometimes referred to as 6 kVA).</p>
 
+  <label>Battery Size (kWh usable): <span id="batteryVal">0.0</span> kWh</label>
+  <input type="range" id="battery" min="0" max="40" step="0.1" value="0.0" />
+  <p class="comment">
+  A battery stores excess solar, and can be used at night or during cloudy peiods. Each kWh usable capacity adds about +5% self-consumption for AC-coupled setups, or +7% for DC-coupled.  
+  E.g. a 5 kWh battery ≈ +25% if AC coupled. Leave this at zero if there's no present. If you get the cost of the battery itemised specifically by a supplier, you can adjust the total installed cost above to see if it's worth it - it almost certinaly should be, and yes somethign is weird if it isn't.   
+  </p>
+  
   <label>System Coupling:</label>
-<div class="toggle-group">
+  <div class="toggle-group">
   <label><input type="radio" name="coupling" value="ac" checked> AC-coupled</label>
   <label><input type="radio" name="coupling" value="dc"> DC-coupled</label>
-</div>
-<p class="comment">
+  </div>
+  <p class="comment">
   If your system is DC-coupled (battery direct or hybrid inverter), surplus solar can be stored before it hits your inverter’s AC limit, so you’ll see significantly less clipping. Most Irish systems are AC-coupled only. DC/hybrid setups are growing but still under 10% of installs.
-</p>
+  </p>
 
   <label>Import Price (€/kWh): <span id="importVal">0.345</span></label>
   <input type="range" id="import" min="0.05" max="0.50" step="0.001" value="0.345" />
@@ -42,13 +49,6 @@
   <label>Self-Consumption (%): <span id="selfVal">40</span>%</label>
   <input type="range" id="self" min="0" max="100" step="1" value="40" />
   <p class="comment">This is a surprisingly important variable you need to think about. How much of your solar do you use directly? The more you run appliances during daylight, the higher this is. Adding a battery typically raises this by ~5% per kWh usable (e.g. a 5 kWh battery ≈ +25%). Around 50–60% is typical for Irish systems without a large battery. Very nerdy people, or big battery setups, can approach 90% or above — but this is very unusual.</p>
-
-  <label>Battery Size (kWh usable): <span id="batteryVal">0.0</span> kWh</label>
-  <input type="range" id="battery" min="0" max="40" step="0.1" value="0.0" />
-  <p class="comment">
-  A battery stores excess solar, and can be used at night or during cloudy peiods. Each kWh usable capacity adds about +5% self-consumption for AC-coupled setups, or +7% for DC-coupled.  
-  E.g. a 5 kWh battery ≈ +25% if AC coupled.
-  </p>
   
   <label>SEAI Grant (€): <span id="grantVal">0</span> €</label>
   <input type="range" id="grant" min="0" max="2400" step="100" value="0" />
