@@ -12,3 +12,6 @@ label { display: block; margin-top: 20px; }
 label + .toggle-group {
   margin-top: 0.5px;
 }
+p {
+  margin-bottom: 1rem; /* or larger if you like */
+}
