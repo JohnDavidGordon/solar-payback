@@ -31,6 +31,11 @@ document.getElementById("self").addEventListener('input', () => {
   update();
 });
 
+
+
+
+let scIsManual = false;
+
 // === Main update ===
 function update() {
   // Force battery to zero once if needed
