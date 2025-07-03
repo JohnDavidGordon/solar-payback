@@ -9,3 +9,6 @@ label { display: block; margin-top: 20px; }
   gap: 2rem;
   margin: 0.5rem 0;
 }
+label + .toggle-group {
+  margin-top: 4px;
+}
